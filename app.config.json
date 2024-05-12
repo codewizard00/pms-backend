@@ -1,0 +1,16 @@
+{
+    "apps" : [
+        {
+        "name"      : "pms-backend users",
+        "script"    : "npx",
+        "interpreter": "none",
+        "args": "yarn start:debug users"
+        },
+        {
+            "name"      : "pms-backend products",
+            "script"    : "npx",
+            "interpreter": "none",
+            "args": "yarn start:debug products"
+        }
+    ]
+}
