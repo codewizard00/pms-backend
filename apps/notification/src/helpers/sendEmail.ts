@@ -6,8 +6,7 @@ import * as path from 'path';
 
 export class SendEmails {
     constructor() {
-        const filePath = path.resolve( 'apps/notification/src/emailTemplate/verifyAccount.ejs');
-        const data = ejs.renderFile(filePath, { name: 'Stranger',confirmation_url:"sdkaajskdasdkj" });
+        
         this.sendEmail("negig3646@gmail.com", "Verify your account", data);
     }
 
@@ -15,8 +14,8 @@ export class SendEmails {
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
-            user: 'ewell.dubuque94@ethereal.email',
-            pass: 'CVTTZZR91AdBgCuSCn'
+            user: 'scarlett.daniel@ethereal.email',
+            pass: 'eJ7B6BRPeqbj4EQADw'
         }
     });
 
@@ -24,18 +23,18 @@ export class SendEmails {
 
     async sendEmail(to: string, subject: string, template: string): Promise<void> {
         try {
+            const filePath = path.resolve('apps/notification/src/emailTemplate/verifyAccount.ejs');
+            const template = ejs.renderFile(filePath, { name: 'Stranger', otp:"1234" });
             const data = await this.transporter.sendMail({
-                from: 'ewell.dubuque94@ethereal.email',
-                to: 'negig655@gmail.com',
+                from: 'scarlett.daniel@ethereal.email',
+                to: 'negig3646@gmail.com',
                 subject: subject,
-                html: '<h1>Hello</h1>',
-                text:"Hello"
+                html: template, // `.ejs` extension is appended automatically
             })
-            console.log(data)
         } catch (error) {
             this.log.error("Error sending email (sendEmail())", error);
         }
     }
 
-    
+
 }  

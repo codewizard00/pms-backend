@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { UsersModule } from './users.module';
+import { UsersModule } from './users/users.module';
 import { ValidationPipe } from '@nestjs/common';
 import { RmqService } from 'libs/common';
 import { RmqOptions } from '@nestjs/microservices';
