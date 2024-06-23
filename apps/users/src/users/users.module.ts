@@ -9,6 +9,8 @@ import { ConfigModule } from '@nestjs/config';
 import { CommonDatabaseModule } from 'libs/common/database/database.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from 'libs/common/database/models/user.model';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -24,6 +26,16 @@ import { User } from 'libs/common/database/models/user.model';
     RmqModule,
     SequelizeModule.forFeature([User]),
     CommonDatabaseModule,
+    ClientsModule.register([
+      {
+        name: 'HERO_PACKAGE',
+        transport: Transport.GRPC,
+        options: {
+          package: 'hero',
+          protoPath: join('apps', 'proto/notification.proto'),
+        },
+      },
+    ]),
   ],
   controllers: [UsersController],
   providers: [

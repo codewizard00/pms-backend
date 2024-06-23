@@ -3,7 +3,12 @@ import {  Injectable, NotFoundException, UnauthorizedException } from '@nestjs/c
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from 'libs/common/database/models/user.model';
+import { Observable } from 'rxjs';
 
+
+interface HeroesService {
+  findOne(data: { id: number }): Observable<any>;
+}
 @Injectable()
 export class UsersService {
 
@@ -13,7 +18,7 @@ export class UsersService {
     private jwtService: JwtService
   ){}
 
-  
+
 
   async register(registerRequest) {
     const {name,email,password} = registerRequest;

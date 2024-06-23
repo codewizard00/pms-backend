@@ -2,18 +2,20 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@n
 import { UsersService } from './users.service';
 import { registerRequestDto } from './dto/registerRequest.dto';
 import { loginRequestDto } from './dto/loginRequest.dto';
-import { MessagePattern } from '@nestjs/microservices';
+import { GrpcMethod, MessagePattern } from '@nestjs/microservices';
 import { CurrentUser } from './current-user';
 import { AuthGuard } from '../auth/auth.gaurd';
 import { User } from 'libs/common/database/models/user.model';
+import { Metadata, ServerUnaryCall } from '@grpc/grpc-js';
+import { Observable } from 'rxjs';
+
 
 @Controller({
     // path: 'users'
 })
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
-
+  
   @Post('/register')
   async register(
     @Body() registerRequest: registerRequestDto

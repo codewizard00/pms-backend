@@ -14,7 +14,17 @@ describe('ProductController', () => {
     controller = module.get<ProductController>(ProductController);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  it('should return a successful response with the correct message when products are fetched', async () => {
+    const productServiceMock = { findAll: jest.fn().mockResolvedValue(['product1', 'product2']) };
+    const reqMock = { user: { id: 1 } };
+    const productController = new ProductController(productServiceMock);
+
+    const result = await productController.findAll(reqMock);
+
+    expect(productServiceMock.findAll).toHaveBeenCalledWith(1);
+    expect(result).toEqual({
+      message: "Product List Fetched Successfully",
+      data: ['product1', 'product2']
+    });
   });
 });

@@ -7,7 +7,7 @@ import * as path from 'path';
 export class SendEmails {
     constructor() {
         
-        this.sendEmail("negig3646@gmail.com", "Verify your account", data);
+       
     }
 
     transporter = nodemailer.createTransport({

@@ -1,9 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { SendEmails } from './helpers/sendEmail';
+import {  Injectable } from '@nestjs/common';
+
 
 @Injectable()
 export class NotificationService {
-    constructor(
-      private sendEmail:SendEmails,
-    ) {}
+ 
 }

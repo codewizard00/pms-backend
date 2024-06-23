@@ -5,7 +5,8 @@
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
-    "tsConfigPath": "apps/orders/tsconfig.app.json"
+    "tsConfigPath": "apps/orders/tsconfig.app.json",
+    "assets": ["**/*.proto"]
   },
   "monorepo": true,
   "root": "apps/orders",
@@ -19,8 +20,7 @@
         "tsConfigPath": "apps/orders/tsconfig.app.json"
       }
     },
- 
-  
+
     "common": {
       "type": "library",
       "root": "libs/common",
